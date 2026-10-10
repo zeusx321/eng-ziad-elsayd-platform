@@ -70,7 +70,9 @@ export default function Navbar() {
             className="relative overflow-hidden w-[100px] sm:w-[119px] h-[38px] sm:h-[44px] rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all duration-200 active:scale-95 shadow-[0_4px_20px_rgba(0,229,153,0.35)] hover:shadow-[0_4px_25px_rgba(0,229,153,0.5)] group"
           >
             <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 pointer-events-none" />
-            <span className="relative z-10 text-background font-bold">إنشاء حساب</span>
+            <span className="relative z-10 text-background font-bold">
+              إنشاء حساب
+            </span>
           </Link>
         </div>
       </div>

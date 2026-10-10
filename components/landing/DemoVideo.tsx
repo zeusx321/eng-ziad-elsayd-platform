@@ -34,7 +34,8 @@ export default function DemoVideo() {
           </h2>
 
           <p className="text-white/70 text-base sm:text-lg lg:text-xl font-normal leading-relaxed text-right mt-1">
-            كل درس بيقودك من الشرح للتطبيق، وبعدها للحل والتحدي، عشان تخرج من الدرس وأنت فعلاً عرفت تعمل حاجة بإيدك.
+            كل درس بيقودك من الشرح للتطبيق، وبعدها للحل والتحدي، عشان تخرج من
+            الدرس وأنت فعلاً عرفت تعمل حاجة بإيدك.
           </p>
         </motion.div>
 
@@ -71,10 +72,13 @@ export default function DemoVideo() {
                   <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
                   <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
-                  <span className="text-[10px] text-white/50 font-mono mr-2">app.js</span>
+                  <span className="text-[10px] text-white/50 font-mono mr-2">
+                    app.js
+                  </span>
                 </div>
                 <code className="text-xs font-mono text-emerald-400 leading-relaxed">
-                  const future = &quot;Developer&quot;;<br />
+                  const future = &quot;Developer&quot;;
+                  <br />
                   console.log(&apos;Becoming a $&#123;future&#125;&apos;);
                 </code>
               </div>
@@ -82,8 +86,14 @@ export default function DemoVideo() {
               {/* Code window mock graphic (top left overlay) */}
               <div className="absolute top-8 left-8 z-10 hidden sm:flex flex-col gap-2 p-4 rounded-xl bg-[#0F172A]/85 border border-white/10 backdrop-blur-md shadow-2xl max-w-[260px]">
                 <code className="text-xs font-mono text-gray-300 leading-relaxed">
-                  <span className="text-primary">function</span> startLearning() &#123;<br />
-                  &nbsp;&nbsp;<span className="text-emerald-400">return</span> &quot;Let&apos;s code&quot;;<br />
+                  <span className="text-primary">function</span> startLearning()
+                  &#123;
+                  <br />
+                  &nbsp;&nbsp;<span className="text-emerald-400">
+                    return
+                  </span>{" "}
+                  &quot;Let&apos;s code&quot;;
+                  <br />
                   &#125;
                 </code>
               </div>

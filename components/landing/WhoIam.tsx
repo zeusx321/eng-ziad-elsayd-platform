@@ -10,7 +10,7 @@ export default function WhoIam() {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
+      transition: { duration: 0.7, ease: "easeOut" as const },
     },
   };
 
@@ -20,7 +20,7 @@ export default function WhoIam() {
       opacity: 1,
       x: 0,
       scale: 1,
-      transition: { duration: 0.8, ease: "easeOut", delay: 0.15 },
+      transition: { duration: 0.8, ease: "easeOut" as const, delay: 0.15 },
     },
   };
 

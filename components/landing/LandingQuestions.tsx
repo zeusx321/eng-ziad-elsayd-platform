@@ -48,7 +48,8 @@ export default function LandingQuestions() {
     }
   }, [currentIdx, selectedAnswers, isCompleted, score, isHydrated]);
 
-  const currentQuestion: QuizQuestion = quizQuestions[currentIdx] || quizQuestions[0];
+  const questionsList = quizQuestions as unknown as QuizQuestion[];
+  const currentQuestion: QuizQuestion = questionsList[currentIdx] || questionsList[0];
   const selectedKey = selectedAnswers[currentQuestion.id];
 
   const handleSelectOption = (key: "A" | "B" | "C" | "D") => {
@@ -60,7 +61,7 @@ export default function LandingQuestions() {
 
   const calculateFinalScore = (answers: Record<number, "A" | "B" | "C" | "D">) => {
     let finalScore = 0;
-    quizQuestions.forEach((q) => {
+    questionsList.forEach((q) => {
       if (answers[q.id] === q.correctKey) {
         finalScore += 1;
       }
@@ -71,7 +72,7 @@ export default function LandingQuestions() {
   const handleNext = () => {
     if (!selectedKey) return;
 
-    if (currentIdx < quizQuestions.length - 1) {
+    if (currentIdx < questionsList.length - 1) {
       setCurrentIdx((prev) => prev + 1);
     } else {
       // Final Question: Calculate score and show results
@@ -138,7 +139,7 @@ export default function LandingQuestions() {
               {/* Question Header: Step counter & Question Label */}
               <div className="flex items-center justify-between text-slate-700 text-sm sm:text-base font-semibold border-b border-[#0B101B]/10 pb-4">
                 <span className="font-mono text-base sm:text-lg text-slate-500">
-                  {currentQuestion.id}/{quizQuestions.length}
+                  {currentQuestion.id}/{questionsList.length}
                 </span>
 
                 <span className="text-slate-600 font-bold">
@@ -189,7 +190,7 @@ export default function LandingQuestions() {
 
               {/* Pagination Dots */}
               <div className="flex items-center justify-center gap-2.5 my-2">
-                {quizQuestions.map((q, idx) => (
+                {questionsList.map((q, idx) => (
                   <span
                     key={q.id}
                     className={`transition-all duration-300 rounded-full ${
@@ -208,7 +209,7 @@ export default function LandingQuestions() {
                 disabled={!selectedKey}
                 className="w-full sm:w-auto px-10 py-3.5 rounded-full bg-[#0B101B] text-white hover:bg-[#1A2338] font-bold text-base sm:text-lg flex items-center justify-center gap-2 mx-auto transition-all duration-300 shadow-md active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               >
-                {currentIdx < quizQuestions.length - 1 ? (
+                {currentIdx < questionsList.length - 1 ? (
                   <>
                     <span>التالي</span>
                     <span className="text-xl leading-none">&lt;</span>
@@ -233,7 +234,7 @@ export default function LandingQuestions() {
                 </span>
 
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0B101B]">
-                  نتيجتك في الاختبار: {score} من {quizQuestions.length}
+                  نتيجتك في الاختبار: {score} من {questionsList.length}
                 </h3>
 
                 <p className="text-base sm:text-lg font-semibold text-emerald-800 bg-emerald-200/70 border border-emerald-500/30 rounded-full px-6 py-2">
@@ -247,7 +248,7 @@ export default function LandingQuestions() {
                   مراجعة الإجابات:
                 </h4>
 
-                {quizQuestions.map((q) => {
+                {questionsList.map((q) => {
                   const userAnsKey = selectedAnswers[q.id];
                   const isCorrect = userAnsKey === q.correctKey;
                   const correctOption = q.options.find((o) => o.key === q.correctKey);

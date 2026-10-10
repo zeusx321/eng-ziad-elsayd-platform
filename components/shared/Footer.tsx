@@ -31,7 +31,8 @@ export default function Footer() {
             </h3>
 
             <p className="text-white/70 text-base sm:text-lg leading-relaxed max-w-md mb-6 sm:mb-8">
-              منصة تعليمية لتعليم البرمجة والذكاء الاصطناعي لطلاب أولى وتانية ثانوي.
+              منصة تعليمية لتعليم البرمجة والذكاء الاصطناعي لطلاب أولى وتانية
+              ثانوي.
             </p>
 
             {/* Social Media Buttons (YouTube, Instagram, Facebook, TikTok, WhatsApp) */}

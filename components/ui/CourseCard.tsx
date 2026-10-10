@@ -8,8 +8,14 @@ import { Course, CourseCardProps } from "@/types";
 import { gradeLabels, trackLabels } from "@/constants";
 
 export default function CourseCard({ course, idx = 0 }: CourseCardProps) {
-  const gradeText = gradeLabels[course.grade] || course.grade || "2 ثانوي";
-  const trackText = trackLabels[course.track] || course.track || "عام عربي";
+  const gradeText =
+    gradeLabels[course.grade as keyof typeof gradeLabels] ||
+    course.grade ||
+    "2 ثانوي";
+  const trackText =
+    trackLabels[course.track as keyof typeof trackLabels] ||
+    course.track ||
+    "عام عربي";
   const priceText =
     typeof course.price === "number"
       ? course.price.toLocaleString("ar-EG")
