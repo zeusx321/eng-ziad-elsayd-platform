@@ -4,16 +4,28 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Course, CourseCardProps } from "@/types";
+import { Course } from "@/types";
 import { gradeLabels, trackLabels } from "@/constants";
 
-export default function CourseCard({ course, idx = 0 }: CourseCardProps) {
+export interface CourseCardProps {
+  course: Course;
+  idx?: number;
+  layout?: boolean;
+  className?: string;
+}
+
+export default function CourseCard({
+  course,
+  idx = 0,
+  layout = false,
+  className = "",
+}: CourseCardProps) {
   const gradeText =
-    gradeLabels[course.grade as keyof typeof gradeLabels] ||
+    (gradeLabels as Record<string, string>)[course.grade] ||
     course.grade ||
     "2 ثانوي";
   const trackText =
-    trackLabels[course.track as keyof typeof trackLabels] ||
+    (trackLabels as Record<string, string>)[course.track] ||
     course.track ||
     "عام عربي";
   const priceText =
@@ -29,12 +41,13 @@ export default function CourseCard({ course, idx = 0 }: CourseCardProps) {
 
   return (
     <motion.article
+      layout={layout}
       initial={{ opacity: 0, y: 30, scale: 0.96 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+      transition={{ duration: 0.5, delay: idx * 0.08, ease: "easeOut" }}
       whileHover={{ y: -8 }}
-      className="group flex flex-col justify-between rounded-3xl bg-[#111727] border border-white/10 hover:border-primary/50 shadow-xl transition-all duration-300 overflow-hidden"
+      className={`group flex flex-col justify-between rounded-3xl bg-[#111727] border border-white/10 hover:border-primary/50 shadow-xl transition-all duration-300 overflow-hidden ${className}`}
     >
       {/* Thumbnail Container */}
       <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-gradient-to-b from-[#182338] to-[#0F1626]">
@@ -45,26 +58,24 @@ export default function CourseCard({ course, idx = 0 }: CourseCardProps) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          /* Default gradient tech background without image */
-          <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-[#0D1527]">
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#0B101B] via-[#14233A] to-[#0C2D23] opacity-95" />
-            <div className="absolute -bottom-10 -right-10 w-44 h-44 bg-primary/20 blur-3xl rounded-full" />
-            <div className="absolute -top-10 -left-10 w-44 h-44 bg-primary/15 blur-3xl rounded-full" />
-            <div className="relative z-10 font-mono text-3xl font-extrabold text-primary/30 tracking-widest select-none">
-              {"</>"}
+          /* Default design thumbnail matching the landing page */
+          <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#0B101B] via-[#152338] to-[#0A261D] opacity-90" />
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#2ECE95_1px,transparent_1px)] [background-size:16px_16px]" />
+            <div className="relative z-10 w-full h-full flex items-end justify-center pt-2">
             </div>
           </div>
         )}
 
         {/* Top Badges */}
         <div className="absolute top-3.5 right-3.5 left-3.5 flex items-center justify-between z-20 pointer-events-none">
-          {/* Track Badge (Top Right) - Larger & Transparent background */}
-          <span className="rounded-full px-4 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base font-semibold backdrop-blur-md text-white border border-white/20">
+          {/* Track Badge (Top Right) */}
+          <span className="rounded-full px-4 sm:px-4 py-2 text-xs sm:text-sm font-semibold bg-[#111727]/80 text-white border border-white/15 backdrop-blur-md">
             {trackText}
           </span>
 
-          {/* Grade Badge (Top Left) - Larger */}
-          <span className="rounded-full px-4 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base font-semibold bg-primary text-background shadow-md">
+          {/* Grade Badge (Top Left) */}
+          <span className="rounded-full px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold bg-primary text-background shadow-md">
             {gradeText}
           </span>
         </div>
@@ -84,13 +95,13 @@ export default function CourseCard({ course, idx = 0 }: CourseCardProps) {
             </span>
 
             {/* Lessons Count Info */}
-            <div className="flex items-center gap-1.5 text-white/70 text-sm sm:text-base">
+            <div className="flex items-center gap-1.5 text-white/70 text-xs sm:text-sm">
               <span>{lessons} حصة</span>
               <Image
                 src="/images/clock.png"
                 alt="مدة الحصص"
-                width={18}
-                height={18}
+                width={16}
+                height={16}
                 className="opacity-75"
               />
             </div>
@@ -108,3 +119,4 @@ export default function CourseCard({ course, idx = 0 }: CourseCardProps) {
     </motion.article>
   );
 }
+
